@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <title>Lab3</title>
+        <h:outputStylesheet library="stylesheets" name="app.css"/>
+        <h:outputStylesheet library="stylesheets" name="w3.css"/>
+        <style>
+            body, html {height: 100%}
+            body {
+                background-image: url('resources/stylesheets/weeb.png');
+                min-height: 100%;
+                background-position: center;
+                background-size: cover;
+                background-attachment: fixed;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div id="content" class="w3-animate-opacity">
+        <table id="mainTable" class="shaded">
+            <thead>
+            <tr>
+                <td ><h4>Ле Фан Фу Куок</h4></td>
+                <td colspan="6" rowspan="2"><h3>Application</h3></td>
+            </tr>
+            <tr>
+                <td><h4>P3212</h4></td>
+            </tr>
+            </thead>
+            <tbody>
+            <h:form id="form" prependId="false">
+            <tr><td colspan="7"><hr/></td></tr>
+            <tr>
+                <td>Choose x: </td>
+                <td colspan="5" class="w3-animate-left"><input id="X-input" type="text" placeholder="a double from -5 to 5" style="max-width:90%;"/></td>
+
+                <td rowspan="3">
+                    <svg id="graph" class="w3-animate-right" width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0" y1="150" x2="300" y2="150" stroke="#000720"/>
+                        <line x1="150" y1="0" x2="150" y2="300" stroke="#000720"/>
+                        <polygon points="300,150 295,155 295, 145" fill="#000720" stroke="#000720"/>
+                        <polygon points="150,0 145,5 155,5" fill="#000720" stroke="#000720"/>
+                        <polygon id="triangle" points="150,150 150,210 90,150" fill-opacity="0.4" stroke="navy" fill="red"/>
+                        <rect id="rect" x="150" y="90" width="60" height="60" fill-opacity="0.4" stroke="navy" fill="blue"/>
+                        <path id="path" d="M 150,150 L90,150 A 60,60 0 0,1 150,90 Z" fill-opacity="0.4" stroke="navy" fill="green"/>
+                    </svg>
+                </td>
+            </tr>
+            <tr>
+                <td>Choose Y: </td>
+                <td colspan="5" class="w3-animate-left">
+                    <h:selectOneRadio style="min-width:90%;" styleClass="select" onchange="selectY(this.value)">
+                        <f:selectItem itemValue = "-2.5" itemLabel = "-5"/>
+                        <f:selectItem itemValue = "-2" itemLabel = "-4" />
+                        <f:selectItem itemValue = "-1.5" itemLabel = "-3" />
+                        <f:selectItem itemValue = "-1" itemLabel = "-2" />
+                        <f:selectItem itemValue = "-0.5" itemLabel = "-1" />
+                        <f:selectItem itemValue = "0" itemLabel = "0"/>
+                        <f:selectItem itemValue = "0.5" itemLabel = "1" />
+                        <f:selectItem itemValue = "1" itemLabel = "2" />
+                        <f:selectItem itemValue = "1.5" itemLabel = "3" />
+                    </h:selectOneRadio>
+                </td>
+            </tr>
+            <tr>
+                <td>Choose R: </td>
+                <td colspan="5" class="w3-animate-left">
+                    <h:selectOneRadio style="min-width:90%;" styleClass="select" onchange="selectR(this.value)" value="1.5">
+                        <f:selectItem itemValue = "0.5" itemLabel = "1"/>
+                        <f:selectItem itemValue = "1" itemLabel = "2" />
+                        <f:selectItem itemValue = "1.5" itemLabel = "3" />
+                        <f:selectItem itemValue = "2" itemLabel = "4" />
+                        <f:selectItem itemValue = "2.5" itemLabel = "5" />
+                    </h:selectOneRadio>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7"><a class="w3-large w3-center" href="index.xhtml">Back to index</a></td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <p:remoteCommand name="sendRequest" update="resTable" action="#{pointsBean.validate}"/>
+                    <button class="effButton" type="button" id="checkButton">Check</button>
+                    <hr/>
+                </td>
+            </tr>
+            </h:form>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="7" id="outputContainer"></td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                        <h:dataTable value="#{pointsBean.points}" var="p" id="resTable">
+                            <h:column>
+                                <f:facet name="header">x</f:facet>
+                                #{p.x}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">y</f:facet>
+                                #{p.y}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">r</f:facet>
+                                #{p.r}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Result</f:facet>
+                                #{p.hit}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Date</f:facet>
+                                #{p.bornDate}
+                            </h:column>
+                        </h:dataTable>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        </div>
+    </h:body>
+</f:view>
+<h:outputScript library="js" name="validator.js"/>
+<h:outputScript library="js" name="graph.js"/>
+</html>
