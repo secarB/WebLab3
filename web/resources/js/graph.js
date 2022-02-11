@@ -9,12 +9,12 @@ function init() {
     setTimeout(loadDots,400);
 }
 init();
-
 document.addEventListener("DOMContentLoaded", () => {
     svg.addEventListener("click", event => {
         if (validateR()) {
             let position = getMousePosition(svg, event);
-            x = ((position.x - 150) / 40)-0.2.toFixed(2);
+            x = (((position.x - 150) / 40)-0.2.toFixed(2)).toFixed(2);
+
             y = ((150 - position.y) / 40+0.1).toFixed(2);
             send();
         }

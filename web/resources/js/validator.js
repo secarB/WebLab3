@@ -1,11 +1,13 @@
 "use strict";
 
-let x, y;
+let x;
+let y=-0.5;
 let r=1.5;
-
+let tam=y;
 
 document.getElementById("checkButton").onclick = function () {
     if (validateX() && validateY() && validateR()) {
+        y = tam;
         send();
     }
 };
@@ -20,10 +22,6 @@ function createNotification(message) {
     outputContainer.appendChild(noti);
 }
 
-function validateX() {
-    if (isNumeric(x)) return true;
-    else createNotification("X is not chose");
-}
 
 function selectR(param) {
     r = param;
@@ -32,6 +30,7 @@ function selectR(param) {
 
 function selectY(param) {
     y = param;
+    tam = y;
 }
 
 function validateX() {
@@ -53,7 +52,7 @@ function validateX() {
 }
 
 function validateY() {
-    if (isNumeric(y)) return true;
+    if (isNumeric(tam)) return true;
     else {
         createNotification("Y is not chose");
         return false;
