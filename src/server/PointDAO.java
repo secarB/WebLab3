@@ -18,10 +18,9 @@ public class PointDAO {
             throw e;
         }
     }
-    public static List getByOwner(String id) {
+    public static List<Point> load() {
         Session session = HibernateUtil.getSession();
-        Query query = session.createQuery("select p from Point p where p.owner = :i");
-        query.setParameter("i",id);
-        return query.list();
+        return session.createQuery("select p from Point p").getResultList();
     }
+
 }
