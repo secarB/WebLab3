@@ -2,6 +2,8 @@ package server;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -10,39 +12,35 @@ import java.util.Date;
 public class Point implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
     @Transient private static final long serialVersionUID = 4L;
     private String owner;
-    private double x, y, r;
+    private String x, y, r;
     private boolean hit;
-    private Date bornDate;
+    private String bornDate;
 
-    public Point(String owner, double x, double y, double r) {
+    public Point(String owner, String x, String y, String r,boolean hit) {
         this.owner = owner;
         this.x = x;
         this.y = y;
-        this.r = r;
-        hit = check(x,y,r);
-        bornDate = new Date();
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        bornDate = dateFormat.format(date);
     }
 
     public Point() {}
 
-    private boolean check(double x, double y, double r) {
-        return (x <= 0 && y<=0 && -x-y<=r)||(x<=0 && y>=0 && x*x+y*y<=r*r)
-                ||(x>=0 && y>=0 && x<=r && y<=r);
-    }
 
     @Override
     public String toString() {
         return "{x="+x+",y="+y +",r="+r+",hit="+ hit +",time="+bornDate+"}";
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -54,27 +52,27 @@ public class Point implements Serializable {
         this.owner = owner;
     }
 
-    public double getX() {
+    public String getX() {
         return x;
     }
 
-    public void setX(double x) {
+    public void setX(String x) {
         this.x = x;
     }
 
-    public double getY() {
+    public String getY() {
         return y;
     }
 
-    public void setY(double y) {
+    public void setY(String y) {
         this.y = y;
     }
 
-    public double getR() {
+    public String getR() {
         return r;
     }
 
-    public void setR(double r) {
+    public void setR(String r) {
         this.r = r;
     }
 
@@ -86,11 +84,11 @@ public class Point implements Serializable {
         this.hit = hit;
     }
 
-    public Date getBornDate() {
+    public String getBornDate() {
         return bornDate;
     }
 
-    public void setBornDate(Date bornDate) {
+    public void setBornDate(String bornDate) {
         this.bornDate = bornDate;
     }
 }

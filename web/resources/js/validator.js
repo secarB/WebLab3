@@ -6,8 +6,13 @@ let r=1.5;
 let tam=y;
 
 document.getElementById("checkButton").onclick = function () {
+    console.log("??");
     if (validateX() && validateY() && validateR()) {
         y = tam;
+        $('.input_form_hidden_x input[type=hidden]').val(x*2);
+        $('.input_form_hidden_y input[type=hidden]').val(y*2);
+        $('.input_form_hidden_r input[type=hidden]').val(r*2);
+
         send();
     }
 };

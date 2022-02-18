@@ -14,14 +14,18 @@ document.addEventListener("DOMContentLoaded", () => {
         if (validateR()) {
             let position = getMousePosition(svg, event);
             x = (((position.x - 150) / 40)-0.2.toFixed(2)).toFixed(2);
-
             y = ((150 - position.y) / 40+0.1).toFixed(2);
+            $('.input_form_hidden_x input[type=hidden]').val(x*2);
+            $('.input_form_hidden_y input[type=hidden]').val(y*2);
+            $('.input_form_hidden_r input[type=hidden]').val(r*2);
+            $( "#checkButton").click();
             send();
         }
     });
 });
 
 function send() {
+
     sendRequest([{name:"X-value", value:x*2}, {name:"Y-value", value:y*2}, {name:"R-value", value:r*2}]);
     drawGraph();
     setTimeout(function () {
