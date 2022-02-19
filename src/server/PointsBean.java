@@ -66,7 +66,6 @@ public class PointsBean implements Serializable {
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             point.setBornDate(dateFormat.format(date));
             facesContext = FacesContext.getCurrentInstance();
-            System.out.println("lol");
             Map<String, String> params = facesContext.getExternalContext().getRequestParameterMap();
             PointDAO.persist(point);
             points.add(point);

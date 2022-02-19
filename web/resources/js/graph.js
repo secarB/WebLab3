@@ -4,7 +4,7 @@ const svg = document.getElementById("graph");
 const rect = document.getElementById("rect");
 const triangle = document.getElementById("triangle");
 const path = document.getElementById("path");
-
+let check = false;
 function init() {
     setTimeout(loadDots,400);
 }
@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
             $('.input_form_hidden_x input[type=hidden]').val(x*2);
             $('.input_form_hidden_y input[type=hidden]').val(y*2);
             $('.input_form_hidden_r input[type=hidden]').val(r*2);
+            check = true;
             $( "#checkButton").click();
-            send();
         }
     });
 });
