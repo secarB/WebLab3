@@ -3,7 +3,8 @@ package server;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
+
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class PointDAO {
@@ -20,7 +21,9 @@ public class PointDAO {
     }
     public static List<Point> load() {
         Session session = HibernateUtil.getSession();
-        return session.createQuery("select p from Point p").getResultList();
+        TypedQuery<Point> typedQuery = session.createQuery("select p from Point p where p.owner = :i");
+        typedQuery.setParameter("i","Test");
+        return typedQuery.getResultList();
     }
 
 }
