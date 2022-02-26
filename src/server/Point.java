@@ -53,7 +53,7 @@ public class Point implements Serializable {
         this.owner = owner;
     }
 
-    public Double getX() {
+    public double getX() {
         return x;
     }
 
@@ -61,7 +61,7 @@ public class Point implements Serializable {
         this.x = x;
     }
 
-    public  double getY() {
+    public double getY() {
         return y;
     }
 
