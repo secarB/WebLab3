@@ -28,18 +28,15 @@ public class PointsBean implements Serializable {
     public boolean isValidData(Point point)
     {
         try {
-            if (point.getX() != null && point.getY() != null && point.getR() != null) {
-                double x = Double.parseDouble(point.getX().replace(',', '.'));
-                double y = Double.parseDouble(point.getY().replace(',', '.'));
-                double r = Double.parseDouble(point.getR().replace(',', '.'));
+                double x = point.getX();
+                double y = point.getY();
+                double r = point.getR();
                 if (isValid(x, y, r)) {
                     point.setHit(check(x, y, r));
                     return true;
                 } else return false;
-            } else {
-                return false;
             }
-        } catch (Exception e) {
+          catch (Exception e) {
             return false;
         }
     }

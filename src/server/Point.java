@@ -15,14 +15,15 @@ public class Point implements Serializable {
     private String id;
     @Transient private static final long serialVersionUID = 4L;
     private String owner;
-    private String x, y, r;
+    private double x, y, r;
     private boolean hit;
     private String bornDate;
 
-    public Point(String owner, String x, String y, String r,boolean hit) {
+    public Point(String owner, double x, double y, double r,boolean hit) {
         this.owner = owner;
         this.x = x;
         this.y = y;
+        this.r = r;
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         bornDate = dateFormat.format(date);
@@ -52,27 +53,27 @@ public class Point implements Serializable {
         this.owner = owner;
     }
 
-    public String getX() {
+    public Double getX() {
         return x;
     }
 
-    public void setX(String x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public String getY() {
+    public  double getY() {
         return y;
     }
 
-    public void setY(String y) {
+    public void setY(double y) {
         this.y = y;
     }
 
-    public String getR() {
+    public double getR() {
         return r;
     }
 
-    public void setR(String r) {
+    public void setR(double r) {
         this.r = r;
     }
 
